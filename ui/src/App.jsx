@@ -42,6 +42,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <p>Appsetting is: {import.meta.env.VITE_TEST_SETTING}</p>
       {
         data && data.map(x => <p key={x.id}>{x.name}</p>)
       }
