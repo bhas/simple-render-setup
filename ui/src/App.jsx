@@ -1,10 +1,24 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { getUsers } from './http/users'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [data, setData] = useState(null)
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const users = await getUsers();
+        console.log(users)
+        setData(users)
+      } catch (err) {
+        console.error(err);
+      }
+    })();
+  }, []);
 
   return (
     <>
@@ -28,6 +42,9 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      {
+        data && data.map(x => <p key={x.id}>{x.name}</p>)
+      }
     </>
   )
 }
