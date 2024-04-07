@@ -13,7 +13,7 @@ const users = [
 ]
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hello World! I have setting: ' + process.env.TEST_SETTING)
 })
 
 app.get('/users', (req, res) => {
